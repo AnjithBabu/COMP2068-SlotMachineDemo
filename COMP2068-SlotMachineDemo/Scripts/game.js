@@ -5,6 +5,8 @@ var stage;
 var game;
 var background;
 var spinButton;
+var tiles = [];
+var tileContainers = [];
 
 // Game Variables
 var playerMoney = 1000;
@@ -68,6 +70,18 @@ function spinReels() {
     spinResult = Reels();
     fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
     console.log(fruits);
+
+    for (var tile = 0; tile < 3; tile++) {
+        if (turn > 0) {
+            game.removeChild(tiles[tile]);
+        }
+        tiles[tile] = new createjs.Bitmap("assets/images/" + spinResult[tile] + ".png");
+        tiles[tile].x = 59 + (105 * tile);
+        tiles[tile].y = 188;
+
+        game.addChild(tiles[tile]);
+        console.log(game.getNumChildren());
+    }
 }
 
 /* Utility function to check if a value falls within a range of bounds */
@@ -93,31 +107,31 @@ function Reels() {
                 blanks++;
                 break;
             case checkRange(outCome[spin], 28, 37):
-                betLine[spin] = "Grapes";
+                betLine[spin] = "grapes";
                 grapes++;
                 break;
             case checkRange(outCome[spin], 38, 46):
-                betLine[spin] = "Banana";
+                betLine[spin] = "banana";
                 bananas++;
                 break;
             case checkRange(outCome[spin], 47, 54):
-                betLine[spin] = "Orange";
+                betLine[spin] = "orange";
                 oranges++;
                 break;
             case checkRange(outCome[spin], 55, 59):
-                betLine[spin] = "Cherry";
+                betLine[spin] = "cherry";
                 cherries++;
                 break;
             case checkRange(outCome[spin], 60, 62):
-                betLine[spin] = "Bar";
+                betLine[spin] = "bar";
                 bars++;
                 break;
             case checkRange(outCome[spin], 63, 64):
-                betLine[spin] = "Bell";
+                betLine[spin] = "bell";
                 bells++;
                 break;
             case checkRange(outCome[spin], 65, 65):
-                betLine[spin] = "Seven";
+                betLine[spin] = "seven";
                 sevens++;
                 break;
         }
