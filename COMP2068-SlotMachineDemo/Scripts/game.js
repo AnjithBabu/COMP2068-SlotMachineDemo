@@ -1,11 +1,10 @@
 ﻿var canvas;
-var stage: createjs.Stage;
+var stage;
 
-// Game Objects 
-var game: createjs.Container;
-var background: createjs.Bitmap;
-var spinButton: createjs.Bitmap;
-
+// Game Objects
+var game;
+var background;
+var spinButton;
 
 function init() {
     canvas = document.getElementById("canvas");
@@ -18,17 +17,13 @@ function init() {
 }
 
 function gameLoop() {
-
-
     stage.update(); // Refreshes our stage
 }
 
 // Event handlers
-
 function spinButtonOut() {
     spinButton.alpha = 1.0;
     console.log("mouseout");
-
 }
 
 function spinButtonOver() {
@@ -41,8 +36,7 @@ function spinReels() {
     console.log("spin button clicked");
 }
 
-
-function createUI():void {
+function createUI() {
     // instantiate my background
     background = new createjs.Bitmap("assets/images/background.png");
     game.addChild(background);
@@ -58,8 +52,6 @@ function createUI():void {
     spinButton.addEventListener("mouseout", spinButtonOut);
 }
 
-
-
 // Our Game Kicks off in here
 function main() {
     // instantiate my game container
@@ -70,6 +62,6 @@ function main() {
     // Create Slotmachine User Interface
     createUI();
 
-
     stage.addChild(game);
 }
+//# sourceMappingURL=game.js.map
