@@ -1,46 +1,4 @@
-﻿var Button = (function () {
-    function Button(path, x, y) {
-        this.setX(x);
-        this.setY(y);
-
-        this._buttonImage = new createjs.Bitmap(path);
-        this._buttonImage.x = this._x;
-        this._buttonImage.y = this._y;
-        this._buttonImage.addEventListener("mouseover", this._buttonOver);
-        this._buttonImage.addEventListener("mouseout", this._buttonOut);
-    }
-    // PUBLIC PROPERTIES
-    Button.prototype.getImage = function () {
-        return this._buttonImage;
-    };
-
-    Button.prototype.getX = function () {
-        return this._x;
-    };
-
-    Button.prototype.getY = function () {
-        return this._y;
-    };
-
-    Button.prototype.setX = function (x) {
-        this._x = x;
-    };
-
-    Button.prototype.setY = function (y) {
-        this._y = y;
-    };
-
-    // EVENT HANDLERS
-    Button.prototype._buttonOut = function (event) {
-        event.currentTarget.alpha = 1.0;
-    };
-
-    Button.prototype._buttonOver = function (event) {
-        event.currentTarget.alpha = 0.5;
-    };
-    return Button;
-})();
-
+﻿/// <reference path="objects/button.ts" />
 var canvas;
 var stage;
 
@@ -48,6 +6,7 @@ var stage;
 var game;
 var background;
 var spinButton;
+var resetButton;
 var tiles = [];
 var tileContainers = [];
 
@@ -232,10 +191,18 @@ function createUI() {
     game.addChild(background);
 
     // Spin Button
-    spinButton = new Button("assets/images/spinButton.png", 323, 376);
+    spinButton = new objects.Button("assets/images/spinButton.png", 323, 376);
     game.addChild(spinButton.getImage());
 
     spinButton.getImage().addEventListener("click", spinReels);
+
+    // Reset Button
+    resetButton = new objects.Button("assets/images/resetButton.png", 38, 380);
+    game.addChild(resetButton.getImage());
+
+    resetButton.getImage().addEventListener("click", function () {
+        console.log("reset clicked");
+    });
 }
 
 // Our Game Kicks off in here
